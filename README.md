@@ -20,5 +20,3 @@ The workspace contains two folders by default, where:
 
 > If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
 
-## Dependency Management
-

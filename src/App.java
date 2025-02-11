@@ -85,11 +85,30 @@ public class App {
     public static void main(String[] args) throws Exception {
 
         Scanner forInput = new Scanner(System.in);
+        System.out.println("Welcome to Weather App CLI\n");
         try {
-            String otherApiLink = getLoc("Tokyo");
-            FetchWeather(otherApiLink);
-            if (otherApiLink == null) return;
-            System.out.println(otherApiLink);
+            while (true) {
+
+                System.out.print("======================================================================================================\nType \"exit\" in order to exit the program.\nEnter the city. -> ");
+                
+                String city = forInput.nextLine();
+
+                if (city.equals("exit")) {System.out.println("Thanks for using the program"); return; }
+                
+                StringBuffer checkedCity = new StringBuffer(city.trim());
+                for (byte i = 0; i<checkedCity.length(); i++) {
+                    if (checkedCity.charAt((int) i) == ' ') {
+                        checkedCity.replace(i, i+1, "+");
+                    }
+                }
+
+                String otherApiLink = getLoc(checkedCity.toString());
+                System.out.println(checkedCity);
+                if (otherApiLink == null) return;
+                FetchWeather(otherApiLink);
+                continue;
+            }
+            
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
